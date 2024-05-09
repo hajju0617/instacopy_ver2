@@ -1,7 +1,9 @@
 package com.green.greengram.feed;
 
 import com.green.greengram.common.CustomFileUtils;
+import com.green.greengram.common.GlobalConst;
 import com.green.greengram.feed.model.*;
+import com.green.greengram.feedcomment.model.FeedCommentGetRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,7 @@ public class FeedService {
             // 피드를 올리자마자 삭제한다거나 댓글을 쓴다거나 할때 pk값이 필요하므로 pk값을 반환 (프론트에서 필요해서)
     }   //@Transactional 범위 끝
 
+
     /*
     N + 1에서, 1은 한 엔티티를 조회하기 위한 쿼리의 개수이며
     N은 조회된 엔티티의 개수만큼 연관된 데이터를 조회하기 위한 추가적인 쿼리의 개수를 의미
@@ -69,6 +72,13 @@ public class FeedService {
         for(FeedGetRes res : list) {
             List<String> pics = mapper.getFeedPicsByFeedId(res.getFeedId());    // 이 부분이 n을 뜻함
             res.setPics(pics);
+
+            List<FeedCommentGetRes> comments = mapper.getFeedCommentTopBy4ByFeedId(res.getFeedId());
+            if(comments.size() == GlobalConst.COMMENT_SIZE_PER_FEED) {
+                res.setIsMoreComment(1);
+                comments.remove(comments.size() - 1);
+            }
+            res.setComments(comments);
         }
         log.info("list : {}", list);
         return list;
