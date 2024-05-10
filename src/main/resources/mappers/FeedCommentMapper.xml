@@ -17,5 +17,15 @@
         WHERE feed_comment_id = #{feedCommentId} AND user_id = #{signedUserId}
     </delete>
 
+    <select id="selFeedCommentList">
+        SELECT A.feed_comment_id AS feedCommentId, A.comment, A.created_at AS createdAt
+        , B.user_id AS writerId, B.nm AS writerNm, B.pic AS writerPic
+        FROM feed_comment A
+        INNER JOIN user B
+        ON A.user_id = B.user_id
+        WHERE A.feed_id = #{feedId}
+        LIMIT 3, 999999
+    </select>
+
 
 </mapper>

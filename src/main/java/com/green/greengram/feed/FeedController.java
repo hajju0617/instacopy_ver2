@@ -39,8 +39,8 @@ public class FeedController {
     @GetMapping
     @Operation(summary = "Feed 리스트", description = "loginUsreId는 로그인한 사용자의 pk")
     public ResultDto<List<FeedGetRes>> getFeed(@ParameterObject @ModelAttribute FeedGetReq p) {
-        System.out.println(p);
         List<FeedGetRes> result = service.getFeed(p);
+        System.out.println(result);
 
         return ResultDto.<List<FeedGetRes>>builder()
                 .statusCode(HttpStatus.OK)

@@ -12,7 +12,7 @@ public class FeedGetReq extends Paging {
 
     private long signedUserId;
 
-    public FeedGetReq(Integer page, Integer size, long signedUserId) {
+    public FeedGetReq(Integer page, Integer size, @BindParam("signed_user_id") long signedUserId) {
         super(page, size == null ? GlobalConst.FEED_PAGING_SIZE : size);
         this.signedUserId = signedUserId;
     }

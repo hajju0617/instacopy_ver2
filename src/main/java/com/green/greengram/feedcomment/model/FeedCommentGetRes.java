@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FeedCommentGetRes {
-    private long feedComment;
+    private long feedCommentId;
     private String comment;
     private String createdAt;
     private long writerId;
