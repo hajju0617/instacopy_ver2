@@ -24,6 +24,6 @@
         SET upw = #{newPw}
         WHERE user_id = #{userId}
     </update>
-    
+
 
 </mapper>

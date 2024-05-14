@@ -16,5 +16,6 @@ public class FeedCommentDeleteReq {
     public FeedCommentDeleteReq(long feedCommentId,long signedUserId) {
         this.feedCommentId = feedCommentId;
         this.signedUserId = signedUserId;
+        // setter를 안 쓸 경우 중간에 데이터값이 변조될 가능성이 없다. ---> 데이터의 일관성을 유지할 수 있다
     }
 }
