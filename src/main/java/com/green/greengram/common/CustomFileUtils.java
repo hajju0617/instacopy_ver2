@@ -25,7 +25,7 @@ Spring Bean은 Spring 프레임워크에서 관리되는 객체로, 애플리케
 public class CustomFileUtils {
     @Value("${file.directory}")
     // 설정파일(yaml)에 file -> directory: 에 지정 되어있는 경로를 uploadPath에 주입
-    private final String uploadPath;
+    private String uploadPath;
     public CustomFileUtils(@Value("${file.directory}") String uploadPath) {
         // @Value("${file.directory}") ----> 객체 생성때 new CustomFileUtils("@Value("${file.directory}")")
         this.uploadPath = uploadPath;
@@ -125,11 +125,12 @@ public class CustomFileUtils {
         new File(uploadPath, target)는 uploadPath 디렉토리 안에 target 이름으로 파일을 생성하거나 찾는 데 사용됩니다.
         여기서 uploadPath는 파일이 저장되는 절대 경로를 나타내고, target은 저장될 파일의 이름(또는 상대 경로를 포함할 수도 있음)입니다.
         이 줄은 실제 파일이 저장될 위치와 이름을 설정하지만, 아직 파일의 내용을 이 위치에 쓰지는 않습니다.
-        파일 저장 실행: mf.transferTo(savefile);
 
+        파일 저장 실행: mf.transferTo(savefile);
         MultipartFile 객체인 mf의 transferTo 메서드를 호출하여, 앞서 지정한 savefile 경로에 실제 파일을 저장합니다
         이 과정에서 파일의 모든 내용이 지정된 경로에 쓰여집니다.
         이 메서드는 파일을 저장하는 과정에서 다양한 예외를 발생시킬 수 있으므로, 호출하는 측에서 이러한 예외를 적절히 처리해야 합니다.
+
         요약
         new File(uploadPath, target); 부분은 서버에 파일을 저장할 위치와 이름을 지정합니다.
         이때 uploadPath는 파일이 저장될 기본 경로(절대 경로)이며, target은 해당 경로 내에서 파일을 저장할 때 사용할 이름입니다.
