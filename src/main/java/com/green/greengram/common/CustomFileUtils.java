@@ -34,8 +34,8 @@ public class CustomFileUtils {
     // 폴더 만들기
     // 이 코드는 특정 경로에 폴더(디렉토리)를 생성하는 메서드
     public String makeFolders(String path) {        // path는 생성하고자 하는 폴더의 경로를 나타냅니다. (path는 메서드 호출 시 제공된 상대 경로)
-        File folder = new File(uploadPath, path);   //File 클래스의 인스턴스 folder를 생성. 생성자의 인자로 uploadPath와 path를 받음
-                                                    //결과적으로, 이 folder 객체는 uploadPath 아래 path에 해당하는 파일 또는 디렉토리를 가리키게 됩니다
+        File folder = new File(uploadPath, path);   // File 클래스의 인스턴스 folder를 생성. 생성자의 인자로 uploadPath와 path를 받음
+                                                    // 결과적으로, 이 folder 객체는 uploadPath 아래 path에 해당하는 파일 또는 디렉토리를 가리키게 됩니다
 
         folder.mkdirs();        // mkdirs() 메소드는 folder 객체가 가리키는 경로에 해당하는 디렉토리(들)를 생성
         // mkdirs() 메서드는 folder 객체가 가리키는 경로에 해당하는 디렉토리를 생성.
